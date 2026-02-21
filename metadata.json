@@ -1,0 +1,7 @@
+{
+  "name": "HafizTrack - Monitoring Tahfidz",
+  "description": "A comprehensive monitoring system for Quran memorization (Tahfidz) in Pondok Pesantren, featuring progress tracking, leaderboards, and AI-powered insights.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
