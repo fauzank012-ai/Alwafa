@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Santri, Guru, Setoran } from '../types';
 import { SURAH_DATA, getHafizSequence } from '../constants';
@@ -18,7 +17,7 @@ const SetoranForm: React.FC<SetoranFormProps> = ({ santriList, guruList, onAddSe
     juz: 30,
     startAyat: 1,
     endAyat: 6,
-    status: '' as Setoran['status'],
+    status: '' as Setoran['status'] | '',
     notes: ''
   });
 
@@ -98,6 +97,10 @@ const SetoranForm: React.FC<SetoranFormProps> = ({ santriList, guruList, onAddSe
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.santriId || !formData.guruId) return;
+    if (!formData.status) {
+      alert('Mohon pilih kualitas hafalan');
+      return;
+    }
     const newSetoran: Setoran = {
       id: Math.random().toString(36).substr(2, 9),
       santriId: formData.santriId,
@@ -106,11 +109,11 @@ const SetoranForm: React.FC<SetoranFormProps> = ({ santriList, guruList, onAddSe
       juz: formData.juz,
       ayatRange: `${formData.startAyat}-${formData.endAyat}`,
       date: new Date().toISOString().split('T')[0],
-      status: formData.status,
+      status: formData.status as Setoran['status'],
       notes: formData.notes
     };
     onAddSetoran(newSetoran);
-    setFormData({ ...formData, notes: '' });
+    setFormData({ ...formData, notes: '', status: '' });
   };
 
   const currentSurahMetadata = SURAH_DATA.find(s => s.name === formData.surah);
