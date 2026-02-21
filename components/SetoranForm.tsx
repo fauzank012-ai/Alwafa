@@ -18,7 +18,7 @@ const SetoranForm: React.FC<SetoranFormProps> = ({ santriList, guruList, onAddSe
     juz: 30,
     startAyat: 1,
     endAyat: 6,
-    status: 'Mumtaz (Istimewa)' as Setoran['status'],
+    status: '' as Setoran['status'],
     notes: ''
   });
 
